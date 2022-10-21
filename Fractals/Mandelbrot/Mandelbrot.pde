@@ -77,7 +77,7 @@ void draw() {
 void keyPressed() {
   if(key=='s')
     save(
-      (MANDELBROT_MODE ? "mandelbrot":"julia_"+C)+"_"+
+      "data/"+(MANDELBROT_MODE ? "mandelbrot":"julia_"+C)+"_"+
       (COLOR_MODE ? "col" : "bw")+"_"+
       tl.x+','+tl.y+","+br.x+","+br.y+"_"+
       width+','+height+"_"+
