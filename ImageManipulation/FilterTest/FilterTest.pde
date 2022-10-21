@@ -3,18 +3,14 @@ PImage img;
 
 void setup() {
   //build screen of correct size & load image
-  /*/
   size(320, 240);
   img = loadImage("photo3.jpg");
-  //*/
-  size(664, 960);
-  img = loadImage("12108848_10153626174309320_2557837029634148967_n.jpg");
-  /*/
-  size(415, 300);
-  img = loadImage("aerialviewofgarden.jpg");
-  size(415, 300);
-  img = loadImage("aerialviewofgarden.jpg");
-  */
+  
+  //size(664, 960);
+  //img = loadImage("data/12108848_10153626174309320_2557837029634148967_n.jpg");
+  
+  //size(415, 300);
+  //img = loadImage("data/aerialviewofgarden.jpg");
   
   
   //generate filters
