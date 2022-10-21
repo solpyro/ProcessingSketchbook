@@ -1,5 +1,7 @@
-final color ON = color(0, 255, 0), 
-            OFF = color(0, 0, 0);
+final color COL1 = color(225, 0, 0), 
+            COL2 = color(0, 225, 0), 
+            COL3 = color(0, 0, 225), 
+            COL4 = color(0, 0, 0);
             
 PVector ant; 
 
@@ -7,7 +9,7 @@ void setup() {
   //size(500,500);
   fullScreen();
   noCursor();
-  background(OFF);
+  background(COL4);
   
   ant  = new PVector(
     int(random(width)), 
@@ -23,7 +25,8 @@ void draw() {
 }
 
 void turn() {
-  if(get(int(ant.x),int(ant.y))==ON) {
+  if(get(int(ant.x),int(ant.y))==COL1 ||
+     get(int(ant.x),int(ant.y))==COL4) {
     //clockwise
     ant.z++;
     if(ant.z==4)
@@ -37,10 +40,15 @@ void turn() {
 }
 
 void flip() {
-  if(get(int(ant.x),int(ant.y))==ON)
-    set(int(ant.x),int(ant.y),OFF);
-  else
-    set(int(ant.x),int(ant.y),ON);
+  int col = get(int(ant.x),int(ant.y));
+  if(col == COL1)
+      set(int(ant.x),int(ant.y),COL2);
+  if(col == COL2)
+      set(int(ant.x),int(ant.y),COL3);
+  if(col == COL3)
+      set(int(ant.x),int(ant.y),COL4);
+  if(col == COL4)
+      set(int(ant.x),int(ant.y),COL1);
 }
 
 void move() {
