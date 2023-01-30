@@ -1,6 +1,7 @@
 public class ActorC {
   float x,y,dx,dy;
   int r;
+  int speed = 100;
   
   public ActorC(float fX, float fY, int iR) {
     x = fX;
@@ -18,14 +19,14 @@ public class ActorC {
     r = iR;
   }
   
-  void move(ArrayList<ActorC> actors) {
+  void move(ActorC[] actors) {
     //move to new position
-    for (int i = 0; i<aniChrs.size (); i++) {
-      if (actors.get(i)!=this) {
-        float fDist = dist(actors.get(i).x, actors.get(i).y, this.x, this.y);
+    for (int i = 0; i<actors.length; i++) {
+      if (actors[i]!=this) {
+        float fDist = dist(actors[i].x, actors[i].y, this.x, this.y);
         fDist = (fDist<10*speed)?0:1/fDist;
-        float fX = (actors.get(i).x-this.x);
-        float fY = (actors.get(i).y-this.y);
+        float fX = (actors[i].x-this.x);
+        float fY = (actors[i].y-this.y);
         float fAtan = atan2(fY, fX);
 
         dx += fDist*cos(fAtan);

@@ -7,7 +7,7 @@ int iProximity;
 color cBg, cStroke, cConstruct;
 boolean bShowWorking;
 
-ActorB[] aActors;
+ActorC[] aActors;
 PGraphics image;
 
 void setup() {
@@ -35,7 +35,7 @@ void setup() {
   
   //initilise automata
   iAutomataCount = 10;
-  aActors = new ActorB[iAutomataCount];
+  aActors = new ActorC[iAutomataCount];
   for(int i=0;i<iAutomataCount;i++) {
     int r = (int)random(iMinR,iMaxR);
     
@@ -49,7 +49,7 @@ void setup() {
     float rX = s*sin(sTheta);
     float rY = s*cos(sTheta);
     
-    aActors[i] = new ActorB(x,y,rX,rY,r);
+    aActors[i] = new ActorC(x,y,r);
   }
   
   
@@ -60,7 +60,7 @@ void draw() {
   
   //move the automata
   for(int i=0;i<iAutomataCount;i++)
-    aActors[i].move();
+    aActors[i].move(aActors);
 
   //allow the automata to arrange themselves
   for(int i=0;i<iAutomataCount;i++)
@@ -117,7 +117,7 @@ void keyPressed() {
         float rX = s*sin(sTheta);
         float rY = s*cos(sTheta);
         
-        aActors[i].change(x,y,rX,rY,r);
+        aActors[i].change(x,y, r);
       }
       image.beginDraw();
       image.background(cBg);
