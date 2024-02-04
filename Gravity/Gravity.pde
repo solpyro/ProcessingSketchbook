@@ -10,7 +10,7 @@ PGraphics map;
 void setup() {
   //initilise screen
   //size(1600, 900);
-  fullScreen();
+  fullScreen(2);
   noCursor();
 
   map = createGraphics(width, height);
@@ -118,4 +118,16 @@ PVector ToroidalDist(PVector from, PVector to) {
     result.y += height;
   }
   return result;
+}
+
+void ToroidalCircle(float x, float y,float r) {
+  circle(x-width, y-height, r);
+  circle(x,       y-height, r);
+  circle(x+width, y-height, r);
+  circle(x-width, y,        r);
+  circle(x,       y,        r);
+  circle(x+width, y,        r);
+  circle(x-width, y+height, r);
+  circle(x,       y+height, r);
+  circle(x+width, y+height, r);
 }

@@ -1,15 +1,17 @@
-float scale  = .03;
+float scale  = .25;
 
 class Body {
   PVector
     position, 
     velocity, 
     gravity;
-  float mass;
+  float mass,
+        sqrtMass;
 
   Body(int maxX, int maxY) {
     position = new PVector(random(maxX), random(maxY));
     mass = random(10, 15);
+    sqrtMass = sqrt(mass);
     velocity = new PVector();
     gravity = new PVector();
   }
@@ -24,12 +26,13 @@ class Body {
       if (bodies[i].mass==0) continue;
 
       PVector dist = ToroidalDist(position, bodies[i].position);
-      if (dist.magSq()<((mass+bodies[i].mass)*(scale/2))) {
+      if (dist.magSq()<((sqrtMass+bodies[i].sqrtMass)*(PI*scale/2))) {
         velocity = PVector.add(
           velocity.mult(mass), 
           bodies[i].velocity.mult(bodies[i].mass)
           ).div(mass+bodies[i].mass);
         mass += bodies[i].mass;
+        sqrtMass = sqrt(mass);
         bodies[i].mass = 0;
         position.add(bodies[i].position).div(2);
       } else {
@@ -46,7 +49,7 @@ class Body {
 
     fill(255);
     noStroke();
-    circle(position.x, position.y, PI*mass*scale);
+    ToroidalCircle(position.x, position.y, PI*sqrtMass*scale);
   }
 
   void drawTrail(int dt, PGraphics map) {
